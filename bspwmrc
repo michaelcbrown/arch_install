@@ -1,0 +1,32 @@
+#! /bin/sh
+
+sxhkd &
+
+polybar black &
+
+# compositing and wallpaper 
+
+picom & 
+feh --bg-fill ~/Pictures/desktop\ backgrounds/botw\ moon.jpg &
+xrdb merge ~/.local/share/Xresources &  # (terminal theme)
+
+bspc monitor -d I II III IV
+
+bspc config border_width         2
+bspc config window_gap          7
+bsp config presel_feedback_color "#ffffff" 
+bspc config split_ratio          0.65
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+#bspc rule -a Gimp desktop='^8' state=floating follow=on
+#bspc rule -a mplayer2 state=floating
+#bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+bspc config top_padding 20
+
+bspc rule -a Matplotlib state=floating
+
+# border colors 
+bspc config focused_border_color "#83a598"
+bspc config normal_border_color "#454849"
