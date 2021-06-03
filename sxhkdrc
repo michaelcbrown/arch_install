@@ -11,6 +11,9 @@ alt + t
 
 alt + m
     dmenu_run
+    
+alt + r
+	xst -e ranger
 
 # reload config (bspwmrc and sxhkdrc)  # 
 
