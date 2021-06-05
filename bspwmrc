@@ -5,7 +5,7 @@ sxhkd &
 polybar black &
 
 picom &
-feh --bg-fill ~/temp_background.jpeg &
+feh --bg-fill ~/Pictures/temp_background.jpeg &
 xrdb merge ~/.Xresources &  # (terminal theme)
 
 bspc monitor -d I II III IV

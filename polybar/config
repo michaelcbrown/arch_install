@@ -1,4 +1,3 @@
-
 [colors]
 
 background = ${xrdb:background}
@@ -21,7 +20,6 @@ color14 = ${xrdb:color14}
 color15 = ${xrdb:color15}
 
 [bar/black]
-#monitor = eDP1
 monitor = ${env:MONITOR:}
 width = 100%
 height = 20
@@ -40,20 +38,11 @@ font-4 = Material Design Icons:style=Regular:size=12;2
 
 wm-restack = bspwm
 tray-position = right
- 
 
 modules-left = bspwm 
 modules-center = xwindow
 #modules-right = mem  wlan  right-end-middle-two xbacklight  right-end-middle  battery  right-end-middle-twoo date powermenu 
 modules-right = wlan battery date powermenu
-
-
-[module/mem]
-type = custom/script
-exec = free -m | sed -n 's/^Mem:\s\+[0-9]\+\s\+\([0-9]\+\)\s.\+/\1/p'
-format = <label>
-label =  %output% 
-label-padding = 1
 
 
 [module/bspwm]
@@ -81,43 +70,6 @@ label-empty-padding = 2
 ; Separator in between workspaces
 ; label-separator = |
 
-#################################
-#type = internal/bspwm
-
-#pin-workspaces = true
-#inline-mode = true
-#enable-click = true
-#enable-scroll = true
-#reverse-scroll = false
-
-#format = <label-state>
-
-#ws-icon-0 = I;%{F#c2f0fc}    
-#ws-icon-1 = II;%{F#fabea7}
-#ws-icon-2 = III;%{F#88e1f2}   
-#ws-icon-3 = IV;%{F#e36387}      
-#ws-icon-4 = V;%{F#cceabb}  
-#ws-icon-5 = VI; 
-
-#label-focused = %icon%
-#label-focused-underline = ${colors.foreground}
-
-#label-focused-padding = 1
-
-
-#label-occupied = %icon%
-#label-occupied-foreground =#ffffff
-#label-occupied-padding = 1
-
-#label-empty = %icon%
-#label-empty-foreground =#ffffff
-#label-empty-padding = 1
-
-#label-urgent = %icon%
-#xxlabel-urgent-foreground = #88C0D0
-#label-urgent-padding = 1
-
-
 
 [module/xwindow]
 type = internal/xwindow
@@ -139,11 +91,17 @@ format-background = ${colors.foreground}
 format-padding = 1
 
 
+
+
 [module/date]
 type = internal/date
 interval = 5
 
-time  = %H:%M
+# These showed the date and time
+#date =    %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
+#date-alt = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
+
+time = %I:%M %p
 format-prefix = " "
 format-prefix-foreground = ${colors.color0}
 format-prefix-background = ${colors.color4}
@@ -153,22 +111,23 @@ label = %time%
 format-padding = 1
 
 [module/battery]
+# BAT1 and ACAD come from the output of: ls /sys/class/power_supply/
 type = internal/battery
-battery = BAT0
-adapter = AC0
+battery = BAT1
+#adapter = ACAD
 full-at = 98
 
-format-charging = <animation-charging> <label-charging>
+#format-charging = <animation-charging> <label-charging>
 label-charging = %percentage%%
 format-charging-foreground = ${colors.color4}
 format-charging-background = ${colors.background}
 
-format-discharging = <ramp-capacity> <label-discharging>
+#format-discharging = <ramp-capacity> <label-discharging>
 label-discharging = %percentage%%
 format-discharging-foreground = ${colors.foreground}
 format-discharging-background = ${colors.background}
 
-format-full-prefix = " "
+#format-full-prefix = " "
 format-full-prefix-foreground = ${colors.color4}
 format-foreground = ${colors.color4}
 format-background = ${colors.background}
@@ -177,20 +136,20 @@ label-discharging-foreground = ${colors.foreground}
 label-charging-foreground = ${colors.color4}
 label-padding = 1
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-ramp-capacity-foreground = ${colors.foreground}
+#ramp-capacity-0 = 
+#ramp-capacity-1 = 
+#ramp-capacity-2 = 
+#ramp-capacity-3 = 
+#ramp-capacity-4 = 
+#ramp-capacity-foreground = ${colors.foreground}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
-animation-charging-foreground = ${colors.color4}
-animation-charging-framerate = 750
+#animation-charging-0 = 
+#animation-charging-1 = 
+#animation-charging-2 = 
+#animation-charging-3 = 
+#animation-charging-4 = 
+#animation-charging-foreground = ${colors.color4}
+#animation-charging-framerate = 750
 
 format-charging-padding = 1
 format-discharging-padding = 1

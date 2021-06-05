@@ -6,6 +6,9 @@ alt + Return
 ctrl + space
     rofi -show drun
 
+super + space
+	rofi -show drun
+
 alt + t
     xed
 
@@ -149,31 +152,3 @@ alt + ctrl + shift + {Left,Down,Up,Right}
 # move a floating window
 super + ctrl + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
-
-
-#super + m
-#  bspc desktop -l next  # idk what this does 
-
-
-# -------------- take screenshots ------------- #
-
-
-#fullscreen screenshot save
-
-#super + Print
-#     maim "/home/$USER/Pictures/$(date)"
-
-#cropped save
-#super + shift + x
-#      maim --select "/home/$USER/Pictures/$(date)"
-
-#  clipboard fullscreen
-#super + u
-#     maim | xclip -selection clipboard -t image/png
-
-# clipboard cropped
-#super + shift + u
-#    maim --select | xclip -selection clipboard -t image/png
-
-
-
