@@ -12,19 +12,14 @@ super + space
 alt + t
     xed
 
-alt + m
-    dmenu_run
-    
+alt + n
+    nemo
+
+alt + f
+	firefox
+
 alt + r
 	xst -e ranger
-
-# reload config (bspwmrc and sxhkdrc)  # 
-
-#super + shift + r
-#	pkill -USR1 -x sxhkd
-
-#super + shift + e
-#        bspc wm -r
 
 #  ------ brightness  -------- # 
 
