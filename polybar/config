@@ -3,21 +3,9 @@
 background = ${xrdb:background}
 foreground = ${xrdb:foreground}
 color0 = ${xrdb:color0}
-color1 = ${xrdb:color1}
-color2 = ${xrdb:color2}
-color3 = ${xrdb:color3}
 color4 = ${xrdb:color4}
-color5 = ${xrdb:color5}
-color6 = ${xrdb:color6}
-color7 = ${xrdb:color7}
 color8 = ${xrdb:color8}
 color9 = ${xrdb:color9}
-color10 = ${xrdb:color10}
-color11 = ${xrdb:color11}
-color12 = ${xrdb:color12}
-color13 = ${xrdb:color13}
-color14 = ${xrdb:color14}
-color15 = ${xrdb:color15}
 
 [bar/black]
 monitor = ${env:MONITOR:}
@@ -28,32 +16,24 @@ foreground = ${colors.foreground}
 bottom = false
 
 line-size = 1
-
+module-margin = 1   # This controls spacing between modules
 
 font-0 = JetBrainsMono Nerd Font:style=Bold:size=12;2
-font-1 = Font Awesome 5 Free:style=Solid:size=12;2
-font-2 = Font Awesome 5 Free:style=Regular:size=12;2
-font-3 = Font Awesome 5 Brands:style=Regular:size=12;2
-font-4 = Material Design Icons:style=Regular:size=12;2
 
 wm-restack = bspwm
 tray-position = right
 
 modules-left = bspwm 
 modules-center = xwindow
-#modules-right = mem  wlan  right-end-middle-two xbacklight  right-end-middle  battery  right-end-middle-twoo date powermenu 
 modules-right = wlan battery date powermenu
 
-
+###################################################
 [module/bspwm]
-
 type = internal/bspwm
 
 label-focused = %index%
-#label-focused-background = ${colors.background-alt}
 label-focused-background = ${colors.color8}
 label-focused-underline = ${colors.color9}
-#label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
 label-occupied = %index%
@@ -70,7 +50,7 @@ label-empty-padding = 2
 ; Separator in between workspaces
 ; label-separator = |
 
-
+###################################################
 [module/xwindow]
 type = internal/xwindow
 label = %title%
@@ -79,20 +59,7 @@ format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 format-padding = 1
 
-[module/xbacklight]
-type = internal/xbacklight
-format = <label>
-format-prefix = " "
-format-prefix-foreground = ${colors.background}
-format-prefix-background = ${colors.foreground}
-label = %percentage%%
-format-foreground = ${colors.background}
-format-background = ${colors.foreground}
-format-padding = 1
-
-
-
-
+###################################################
 [module/date]
 type = internal/date
 interval = 5
@@ -110,6 +77,7 @@ format-background = ${colors.color4}
 label = %time%
 format-padding = 1
 
+###################################################
 [module/battery]
 # BAT1 and ACAD come from the output of: ls /sys/class/power_supply/
 type = internal/battery
@@ -162,65 +130,7 @@ click-left = mocp -f &
 click-right = mocp -r &
 click-middle = mocp -G &
 
-[module/coin-toss]
-type = custom/script
-exec = ~/Documents/scripts/toss.sh 
-click-left = ~/Documents/scripts/toss.sh --toss
-padding = 1
-
-[module/decor]
-type = custom/text
-content-background = ${colors.color4}
-content-foreground = ${colors.color0}
-
-[module/left-end]
-inherit = module/decor
-content = "%{T3}%{T-}"
-
-[module/right-end]
-inherit = module/decor
-content = "%{T}%{T}"
-
-[module/right-end-middle]
-inherit = module/decor
-content = "%{T3}%{T-}"
-content-background = ${colors.foreground}
-
-[module/right-mid]
-inherit = module/decor
-content = "%{T3}%{T-}"
-content-background = #88e1f2
- 
-
-[module/right-end-middlee]
-inherit = module/decor
-content = "%{T3}%{T-}"
-content-background =  ${colors.foreground}
-
-
-[module/right-end-middle-two]
-inherit = module/decor
-content = "%{T3}%{T-}"
-content-background = ${colors.background}
-content-foreground = ${colors.foreground}
-
-[module/right-end-middle-tww]
-inherit = module/decor
-content = "%{T3}%{T-}"
-content-background = ${colors.color0}
-content-foreground = #88e1f2
-[module/right-end-middle-twoo]
-inherit = module/decor
-content = "%{T3}%{T-}"
-content-background = ${colors.color0}  
-content-foreground =  ${colors.color4}   
-
-
-[module/square]
-inherit = module/decor
-content = "%{T3}%{T-}"
-content-background = ${colors.background}
-
+###################################################
 [module/powermenu]
 type = custom/menu
 
@@ -250,7 +160,7 @@ menu-0-3-exec = bspc quit
 menu-0-4 = 
 menu-0-4-exec = xset dpms force off
 
-
+###################################################
 [module/wlan]
 type = internal/network
 interface = wlan0
