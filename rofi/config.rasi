@@ -3,7 +3,7 @@ configuration{
     width: 40;
     columns: 1;
     lines: 5;
- 	font: "Iosevka 12";
+ 	font: "Source Code Pro 12";
     show-icons: false;
 	icon-theme: "Papirus-Dark";
     terminal: "xst";

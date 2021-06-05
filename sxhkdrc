@@ -7,7 +7,7 @@ ctrl + space
     rofi -show drun
 
 super + space
-	rofi -show drun
+	rofi -modi drun -show drun -no-config -font 'Source Code Pro 12'
 
 alt + t
     xed
