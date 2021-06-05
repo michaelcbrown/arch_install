@@ -31,6 +31,16 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
     xbacklight -dec 10
 
+# ------ volume ------ #
+XF86AudioLowerVolume
+	amixer set Master 5%-
+
+XF86AudioRaiseVolume
+	amixer set Master 5%+
+
+XF86AudioMute
+	amixer set Master toggle
+
 #  ------------ bspwm hotkeys ------------ # 
 
 # quit/restart bspwm

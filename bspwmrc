@@ -4,11 +4,9 @@ sxhkd &
 
 polybar black &
 
-# compositing and wallpaper 
-
-picom & 
-feh --bg-fill ~/Pictures/desktop\ backgrounds/botw\ moon.jpg &
-xrdb merge ~/.local/share/Xresources &  # (terminal theme)
+picom &
+feh --bg-fill ~/temp_background.jpeg &
+xrdb merge ~/.Xresources &  # (terminal theme)
 
 bspc monitor -d I II III IV
 
