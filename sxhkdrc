@@ -3,11 +3,8 @@
 alt + Return
 	xst
 
-ctrl + space
-    rofi -show drun
-
 super + space
-	rofi -modi drun -show drun -no-config -font 'Source Code Pro 12'
+	rofi -show drun -no-config -font 'Source Code Pro 12'
 
 alt + t
     xed
@@ -20,6 +17,9 @@ alt + f
 
 alt + r
 	xst -e ranger
+
+alt + v
+	code
 
 #  ------ brightness  -------- # 
 

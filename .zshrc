@@ -1,5 +1,6 @@
     # Path to your oh-my-zsh configuration.
     ZSH=$HOME/.oh-my-zsh
+    export PATH="/opt/miniconda3/bin:$PATH"
 
     # Configuration for powerline theme
     # Look in ~/.oh-my-zsh-powerline-theme
@@ -28,3 +29,21 @@
     #then
     #    source /usr/local/bin/virtualenvwrapper.sh
     #fi
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/mb/Other/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/mb/Other/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/mb/Other/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/mb/Other/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+eval "$(mcfly init zsh)"
+eval "$(zoxide init zsh)"

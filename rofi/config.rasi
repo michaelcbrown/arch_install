@@ -1,5 +1,5 @@
 configuration{
-    modi: "drun";
+    modi: "drun,window,file-browser";
     width: 40;
     columns: 1;
     lines: 5;
@@ -13,5 +13,5 @@ configuration{
     separator-style: "solid";
     disable-history: true;
     hide-scrollbar: true;
-	theme: "~/.config/rofi/simple.rasi";
+    theme: "~/.config/rofi/simple.rasi";
 }

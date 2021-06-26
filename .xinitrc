@@ -45,3 +45,4 @@ fi
 
 sxhkd &
 bspwm -c ~/.config/bspwm/bspwmrc
+#exec cinnamon-session
