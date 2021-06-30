@@ -25,7 +25,7 @@ mkdir ~/.local/share/fonts
 cp ~/builds/bspwm-dotfiles/fonts\!\ \(\ jetbrainsmono\ nerd\ font\ +\ material\ \) ~/.local/share/fonts
 cd ~/.local/share/fonts
 fc-cache -fv
-cd ~/builds/bspwm_dotfiles
+cd ~/builds/bspwm_dotfiles/st
 make && sudo make install
 ### can I run xrdb merge .Xresources here? or will it be an error
 sudo pacman -S zsh --noconfirm
