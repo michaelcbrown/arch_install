@@ -5,7 +5,7 @@ sudo chown -R mb:mb ./yay-git
 cd yay-git
 makepkg -si
 sudo pacman -S pulseaudio pulseaudio-alsa xorg xorg-xinit xorg-server xterm --noconfirm
-sudo pacman -S feh bspwm sxhkd maim xclip picon ttf-font awesome rofi --noconfirm
+sudo pacman -S feh bspwm sxhkd maim xclip picom ttf-font awesome rofi --noconfirm
 yay -S polybar xst --noconfirm
 mkdir ~/.config
 mkdir ~/.config/bspwm
