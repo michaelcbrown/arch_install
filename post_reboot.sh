@@ -8,38 +8,56 @@ trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
 # echo an error message before exiting
 trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
 
-cd ~/builds
-sudo git clone https://aur.archlinux.org/yay-git.git
-sudo chown -R mb:mb ./yay-git
+REPO="home/mb/builds/bspwm_dotfiles"
+BUILDS="home/mb/builds"
+USERNAME="mb"
+
+# installing yay
+sudo git clone https://aur.archlinux.org/yay-git.git $BUILDS
+sudo chown -R $USERNAME:$USERNAME ./yay-git
 cd yay-git
 makepkg -si
-sudo pacman -S pulseaudio pulseaudio-alsa xorg xorg-xinit xorg-server xterm --noconfirm
-sudo pacman -S feh bspwm sxhkd maim xclip picom ttf-font awesome rofi --noconfirm
-yay -S polybar xst --noconfirm
+
+# packages
+sudo pacman -S --noconfirm \
+    pulseaudio pulseaudio-alsa xorg xorg-xinit xorg-server xterm \
+    bspwm sxhkd feh maim xclip picom rofi ttf-font-awesome zsh \
+    lightdm papirus-icon-theme \
+    ranger wget \
+    /
+yay -S --noconfirm \
+    polybar xst canta-gtk-theme lightdm-slick-greeter lightdm-settings \
+    /
+
+# bspwm et al. config
 mkdir -p ~/.config/bspwm
 mkdir -p ~/.config/sxhkd
-ln -sf ~/builds/bspwm_dotfiles/bspwmrc ~/.config/bspwm
-ln -sf ~/builds/bspwm_dotfiles/sxhkdrc ~/.config/sxhkd
-chmod +x ~/builds/bspwm_dotfiles/bspwmrc
-ln -sf ~/builds/bspwm_dotfiles/picom ~/.config/picom
-ln -sf ~/builds/bspwm_dotfiles/polybar ~/.config/polybar
-ln -sf ~/builds/bspwm_dotfiles/rofi ~/.config/rofi
-ln -sf ~/builds/bspwm_dotfiles/Xresources ~/.Xresources
-cd ~/builds
-git clone https://github.com/siduck76/bspwm-dotfiles
+ln -sf $REPO/bspwmrc ~/.config/bspwm
+ln -sf $REPO/sxhkdrc ~/.config/sxhkd
+chmod +x $REPO/bspwmrc
+ln -sf $REPO/picom ~/.config/picom
+ln -sf $REPO/polybar ~/.config/polybar
+ln -sf $REPO/rofi ~/.config/rofi
+ln -sf $REPO/Xresources ~/.Xresources
+
 mkdir -p ~/.local/share/fonts
-cp -r ~/builds/bspwm-dotfiles/fonts\!\ \(\ jetbrainsmono\ nerd\ font\ +\ material\ \) ~/.local/share/fonts
-cd ~/.local/share/fonts
+ln -sf $REPO/fonts ~/.local/share/fonts
 fc-cache -fv
-rm -rf ~/builds/bspwm-dotfiles
 cd ~/builds/bspwm_dotfiles/st
 make && sudo make install
 ### can I run xrdb merge .Xresources here? or will it be an error
-sudo pacman -S zsh --noconfirm
 chsh -s /usr/bin/zsh
-sudo pacman -S papirus-icon-theme --noconfirm
-yay -S canta-gtk-theme --noconfirm
 
 # -mkdir -p makes the parent directories if necessary
 mkdir -p ~/Pictures/desktop\ backgrounds
-mv ~/builds/bspwm_dotfiles/botw.png ~/Pictures/desktop\ backgrounds
+mv $REPO/botw.png ~/Pictures/desktop\ backgrounds
+
+# sudo nano /etc/lightdm/lightdm.conf
+# Ctrl+W to search for "greeter-session=example"
+# Replace example-gtk-gnome with lightdm-slick-greeter and uncomment
+sudo systemctl enable lightdm
+
+# oh-my-zsh
+wget --no-check-certificate http://install.ohmyz.sh -O - | sh
+sudo git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
