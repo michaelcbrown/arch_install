@@ -22,8 +22,8 @@ makepkg -si
 sudo pacman -S --noconfirm \
     pulseaudio pulseaudio-alsa xorg xorg-xinit xorg-server xterm \
     bspwm sxhkd feh maim xclip picom rofi ttf-font-awesome zsh \
-    lightdm papirus-icon-theme \
-    ranger wget \
+    lightdm papirus-icon-theme lxappearance \
+    ranger wget ufw unzip mcfly zoxide \
     /
 yay -S --noconfirm \
     polybar xst canta-gtk-theme lightdm-slick-greeter lightdm-settings \
@@ -55,9 +55,15 @@ mv $REPO/botw.png ~/Pictures/desktop\ backgrounds
 # sudo nano /etc/lightdm/lightdm.conf
 # Ctrl+W to search for "greeter-session=example"
 # Replace example-gtk-gnome with lightdm-slick-greeter and uncomment
-sudo systemctl enable lightdm
+# -f is "force" > overwrite conflicting symlinks
+sudo systemctl enable lightdm -f
 
 # oh-my-zsh
 wget --no-check-certificate http://install.ohmyz.sh -O - | sh
 sudo git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+ln -sf $REPO/.zshrc ~/.zshrc
 
+# firewall
+sudo ufw enable
+sudo ufw status verbose
+sudo systemctl enable ufw.service
