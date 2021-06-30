@@ -22,9 +22,10 @@ git clone https://github.com/siduck76/bspwm-dotfiles
 mkdir ~/.local
 mkdir ~/.local/share
 mkdir ~/.local/share/fonts
-cp ~/builds/bspwm-dotfiles/fonts\!\ \(\ jetbrainsmono\ nerd\ font\ +\ material\ \) ~/.local/share/fonts
+cp -r ~/builds/bspwm-dotfiles/fonts\!\ \(\ jetbrainsmono\ nerd\ font\ +\ material\ \) ~/.local/share/fonts
 cd ~/.local/share/fonts
 fc-cache -fv
+rm -rf ~/builds/bspwm-dotfiles
 cd ~/builds/bspwm_dotfiles/st
 make && sudo make install
 ### can I run xrdb merge .Xresources here? or will it be an error
