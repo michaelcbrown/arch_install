@@ -82,6 +82,7 @@ configure_bspwm () {
     ln -sf $REPO/picom ~/.config/picom
     ln -sf $REPO/polybar ~/.config/polybar
     ln -sf $REPO/rofi ~/.config/rofi
+    ranger --copy-config=all
     ln -sf $REPO/rifle.conf ~/.config/ranger/
     ln -sf $REPO/Xresources ~/.Xresources
 
@@ -104,6 +105,7 @@ other_basics () {
     # Replace example-gtk-gnome with lightdm-slick-greeter and uncomment
     # -f is "force" > overwrite conflicting symlinks
     sudo systemctl enable lightdm -f
+    sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-slick-greeter/' /etc/lightdm/lightdm.conf
 
     # oh-my-zsh
     cd /home/$USERNAME
