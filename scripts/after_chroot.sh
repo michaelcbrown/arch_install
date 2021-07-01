@@ -27,4 +27,4 @@ systemctl enable dhcpcd
 
 mkdir /home/mb/builds && cd /home/mb/builds
 git clone https://github.com/michaelcbrown/arch_install
-chmod +x /arch_install/scripts/first_login.sh
+chmod +x /home/mb/builds/arch_install/scripts/first_login.sh
