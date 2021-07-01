@@ -17,7 +17,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 curl -LJO https://raw.githubusercontent.com/michaelcbrown/arch_install/master/scripts/after_chroot.sh
 chmod +x after_chroot.sh
-cp after_chroot /mnt/root
+cp after_chroot.sh /mnt/root
 arch-chroot /mnt/ /root/after_chroot.sh
 
 echo "done, reached end"
