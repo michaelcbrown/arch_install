@@ -60,6 +60,7 @@ install_initial_packages () {
         bspwm sxhkd feh maim xclip picom rofi ttf-font-awesome zsh \
         lightdm papirus-icon-theme lxappearance \
         ranger wget ufw unzip nemo \
+        /
     
     cd $BUILDS
     sudo git clone https://aur.archlinux.org/yay-git.git
@@ -69,6 +70,7 @@ install_initial_packages () {
     
     yay -S --noconfirm \
         xst canta-gtk-theme lightdm-slick-greeter lightdm-settings polybar mcfly zoxide \
+        /
 }
 
 configure_bspwm () {
