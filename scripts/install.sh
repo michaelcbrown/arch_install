@@ -76,7 +76,7 @@ install_initial_packages () {
 
 configure_bspwm () {
     mkdir -p ~/.config/{bspwm,sxhkd}
-    chmod +x $REPO/bspwmrc
+    sudo chmod +x $REPO/bspwmrc
     ln -sf $REPO/bspwmrc ~/.config/bspwm/
     ln -sf $REPO/sxhkdrc ~/.config/sxhkd/
     ln -sf $REPO/picom ~/.config/picom
