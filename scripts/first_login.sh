@@ -42,7 +42,9 @@ ln -sf $REPO/picom ~/.config/picom
 ln -sf $REPO/polybar ~/.config/polybar
 ln -sf $REPO/rofi ~/.config/rofi
 ln -sf $REPO/rifle.conf ~/.config/ranger
-ln -sf $REPO/Xresources ~/.Xresources
+ln -sf $REPO/.Xresources ~/.Xresources
+ln -sf $REPO/.xinitrc ~/.xinitrc
+ln -sf $REPO/zshrc/.zshrc ~/.zshrc
 
 mkdir -p ~/.local/share/fonts
 ln -sf $REPO/fonts ~/.local/share/fonts
