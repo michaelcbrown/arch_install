@@ -24,3 +24,7 @@ pacman -S grub
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable dhcpcd
+
+mkdir /home/mb/builds && cd /home/mb/builds
+git clone https://github.com/michaelcbrown/arch_install
+chmod +x /arch_install/scripts/first_login.sh
