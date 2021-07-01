@@ -12,8 +12,10 @@ REPO="/home/mb/builds/arch_install"
 BUILDS="/home/mb/builds"
 USERNAME="mb"
 
+mkdir $BUILDS && cd $BUILDS
+sudo git clone https://github.com/michaelcbrown/arch_install
+
 # installing yay
-cd $BUILDS
 sudo git clone https://aur.archlinux.org/yay-git.git
 sudo chown -R $USERNAME:$USERNAME ./yay-git
 cd yay-git
