@@ -37,6 +37,7 @@ ln -sf $REPO/sxhkdrc ~/.config/sxhkd
 ln -sf $REPO/picom ~/.config/picom
 ln -sf $REPO/polybar ~/.config/polybar
 ln -sf $REPO/rofi ~/.config/rofi
+ln -sf $REPO/rifle.conf ~/.config/ranger
 ln -sf $REPO/Xresources ~/.Xresources
 
 mkdir -p ~/.local/share/fonts
