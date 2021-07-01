@@ -8,15 +8,15 @@ trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
 # echo an error message before exiting
 trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
 
-REPO="home/mb/builds/bspwm_dotfiles"
-BUILDS="home/mb/builds"
+REPO="/home/mb/builds/bspwm_dotfiles"
+BUILDS="/home/mb/builds"
 USERNAME="mb"
 
 # installing yay
 cd $BUILDS
 sudo git clone https://aur.archlinux.org/yay-git.git
-cd yay-git
 sudo chown -R $USERNAME:$USERNAME ./yay-git
+cd yay-git
 makepkg -si
 
 # packages
@@ -25,10 +25,10 @@ sudo pacman -S --noconfirm \
     bspwm sxhkd feh maim xclip picom rofi ttf-font-awesome zsh \
     lightdm papirus-icon-theme lxappearance \
     ranger wget ufw unzip mcfly zoxide nemo \
-    /
+
 yay -S --noconfirm \
-    xst canta-gtk-theme lightdm-slick-greeter lightdm-settings polybar \
-    /
+    xst canta-gtk-theme lightdm-slick-greeter lightdm-settings polybar mcfly zoxide \
+
 
 # bspwm et al. config; -p might be necessary so it creates .config
 mkdir -p ~/.config/{bspwm,sxhkd}
@@ -44,14 +44,14 @@ ln -sf $REPO/Xresources ~/.Xresources
 mkdir -p ~/.local/share/fonts
 ln -sf $REPO/fonts ~/.local/share/fonts
 fc-cache -fv
-cd ~/builds/bspwm_dotfiles/st
+cd $REPO/st
 make && sudo make install
 ### can I run xrdb merge .Xresources here? or will it be an error
 chsh -s /usr/bin/zsh
 
 # -mkdir -p makes the parent directories if necessary
 mkdir -p ~/Pictures/desktop\ backgrounds
-mv $REPO/botw.png ~/Pictures/desktop\ backgrounds
+cp $REPO/botw.png ~/Pictures/desktop\ backgrounds
 
 # sudo nano /etc/lightdm/lightdm.conf
 # Ctrl+W to search for "greeter-session=example"
@@ -60,8 +60,9 @@ mv $REPO/botw.png ~/Pictures/desktop\ backgrounds
 sudo systemctl enable lightdm -f
 
 # oh-my-zsh
+cd /home/$USERNAME
 wget --no-check-certificate http://install.ohmyz.sh -O - | sh
-sudo git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+sudo git clone git://github.com/robbyrussell/oh-my-zsh.git
 ln -sf $REPO/zshrc/.zshrc ~/.zshrc
 
 # firewall
