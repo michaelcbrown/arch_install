@@ -24,7 +24,7 @@ sudo pacman -S --noconfirm \
     pulseaudio pulseaudio-alsa xorg xorg-xinit xorg-server xterm \
     bspwm sxhkd feh maim xclip picom rofi ttf-font-awesome zsh \
     lightdm papirus-icon-theme lxappearance \
-    ranger wget ufw unzip mcfly zoxide nemo \
+    ranger wget ufw unzip nemo \
 
 yay -S --noconfirm \
     xst canta-gtk-theme lightdm-slick-greeter lightdm-settings polybar mcfly zoxide \
