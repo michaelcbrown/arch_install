@@ -23,8 +23,10 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
 echo "mb_arch" > /etc/hostname
 hwclock --systohc
+echo "Set system password:"
 passwd
 useradd -m -G wheel mb
+echo "Set user password:"
 passwd mb
 sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
 
