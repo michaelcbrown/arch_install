@@ -15,24 +15,9 @@ mount /dev/sda2 /mnt
 pacstrap /mnt base linux linux-firmware base-devel nano sudo git iwd dhcpcd
 genfstab -U /mnt >> /mnt/etc/fstab
 
-arch-chroot /mnt << EOF
-sed sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
-locale-gen
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
-ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
-echo "mb_arch" > /etc/hostname
-hwclock --systohc
-echo "Set system password:"
-passwd
-useradd -m -G wheel mb
-echo "Set user password:"
-passwd mb
-sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
+curl -LJO https://raw.githubusercontent.com/michaelcbrown/arch_install/master/scripts/after_chroot.sh
+chmod +x after_chroot.sh
+cp after_chroot /mnt/root
+arch-chroot /mnt/ /root/after_chroot.sh
 
-pacman -S grub
-grub-install /dev/sda
-grub-mkconfig -o /boot/grub/grub.cfg
-
-systemctl enable dhcpcd
-EOF
 echo "done, reached end"
