@@ -14,8 +14,8 @@ USERNAME="mb"
 
 # installing yay
 sudo git clone https://aur.archlinux.org/yay-git.git $BUILDS
+cd $BUILDS/yay-git
 sudo chown -R $USERNAME:$USERNAME ./yay-git
-cd yay-git
 makepkg -si
 
 # packages
