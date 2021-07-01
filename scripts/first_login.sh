@@ -23,18 +23,17 @@ sudo pacman -S --noconfirm \
     pulseaudio pulseaudio-alsa xorg xorg-xinit xorg-server xterm \
     bspwm sxhkd feh maim xclip picom rofi ttf-font-awesome zsh \
     lightdm papirus-icon-theme lxappearance \
-    ranger wget ufw unzip mcfly zoxide \
+    ranger wget ufw unzip mcfly zoxide nemo \
     /
 yay -S --noconfirm \
-    polybar xst canta-gtk-theme lightdm-slick-greeter lightdm-settings \
+    xst canta-gtk-theme lightdm-slick-greeter lightdm-settings polybar \
     /
 
-# bspwm et al. config
-mkdir -p ~/.config/bspwm
-mkdir -p ~/.config/sxhkd
+# bspwm et al. config; -p might be necessary so it creates .config
+mkdir -p ~/.config/{bspwm,sxhkd}
+chmod +x $REPO/bspwmrc
 ln -sf $REPO/bspwmrc ~/.config/bspwm
 ln -sf $REPO/sxhkdrc ~/.config/sxhkd
-chmod +x $REPO/bspwmrc
 ln -sf $REPO/picom ~/.config/picom
 ln -sf $REPO/polybar ~/.config/polybar
 ln -sf $REPO/rofi ~/.config/rofi
@@ -61,7 +60,7 @@ sudo systemctl enable lightdm -f
 # oh-my-zsh
 wget --no-check-certificate http://install.ohmyz.sh -O - | sh
 sudo git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-ln -sf $REPO/.zshrc ~/.zshrc
+ln -sf $REPO/zshrc/.zshrc ~/.zshrc
 
 # firewall
 sudo ufw enable
