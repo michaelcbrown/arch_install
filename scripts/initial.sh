@@ -16,11 +16,11 @@ pacstrap /mnt base linux linux-firmware base-devel nano sudo git iwd dhcpcd
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 
-sed sed -i ‘s/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/’ /etc/locale.gen
+sed sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
-echo “LANG=en_US.UTF-8” > /etc/locale.conf
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
 ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
-echo “mb_arch” > /etc/hostname
+echo "mb_arch" > /etc/hostname
 hwclock --systohc
 passwd
 useradd -m -G wheel mb
