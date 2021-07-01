@@ -19,7 +19,7 @@ partitioning () {
     mkfs.ext2 /dev/sda1
     mkfs.ext4 /dev/sda2
     mount /dev/sda2 /mnt
-    pacstrap /mnt base linux linux-firmware base-devel nano sudo git iwd dhcpcd
+    pacstrap /mnt base linux linux-firmware base-devel vim nano sudo git iwd dhcpcd
     genfstab -U /mnt >> /mnt/etc/fstab
 }
 
