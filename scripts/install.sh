@@ -32,14 +32,16 @@ chrooting () {
     arch-chroot /mnt echo "mb_arch" > /etc/hostname
     arch-chroot /mnt hwclock --systohc
     arch-chroot /mnt passwd
-    arch-chroot /mnt useradd -m -G wheel mb
-    arch-chroot /mnt passwd mb
-    #printf "#$USERPW\N$USERPW" | arch-chroot /mnt passwd mb
+    arch-chroot /mnt useradd -m -G wheel $USERNAME
+    arch-chroot /mnt passwd $USERNAME
+    #printf "#$USERPW\N$USERPW" | arch-chroot /mnt passwd $USERNAME
     arch-chroot /mnt sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
     arch-chroot /mnt pacman -S grub
     arch-chroot /mnt grub-install /dev/sda
     arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
     arch-chroot /mnt systemctl enable dhcpcd
+    chmod 777 install.sh
+    mv install.sh /mnt/home/$USERNAME
 }
 
 
@@ -60,7 +62,6 @@ install_initial_packages () {
         bspwm sxhkd feh maim xclip picom rofi ttf-font-awesome zsh \
         lightdm papirus-icon-theme lxappearance \
         ranger wget ufw unzip nemo \
-        /
     
     cd $BUILDS
     sudo git clone https://aur.archlinux.org/yay-git.git
@@ -70,7 +71,7 @@ install_initial_packages () {
     
     yay -S --noconfirm \
         xst canta-gtk-theme lightdm-slick-greeter lightdm-settings polybar mcfly zoxide \
-        /
+
 }
 
 configure_bspwm () {
