@@ -125,7 +125,7 @@ install_cinnamon () {
 
 main () {
     case $1 in
-        "partition")
+        partition)
             partition
             ;;
             
@@ -166,4 +166,4 @@ main () {
     shift
 }
 
-main
+main $1
