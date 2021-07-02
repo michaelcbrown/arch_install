@@ -14,7 +14,7 @@ USERNAME="mb"
 
 
 ### partitioning and initial packages
-partitioning () {
+partition () {
     cfdisk
     mkfs.ext2 /dev/sda1
     mkfs.ext4 /dev/sda2
@@ -24,7 +24,7 @@ partitioning () {
 }
 
 ### stuff within arch_chroot
-chrooting () {
+chroot () {
     arch-chroot /mnt sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
     arch-chroot /mnt locale-gen
     arch-chroot /mnt echo "LANG=en_US.UTF-8" > /etc/locale.conf
@@ -50,31 +50,35 @@ chrooting () {
 #chmod +rwx first_login.sh
 #mv first_login.sh /mnt/home/mb
 
-
-clone_repo () {
-    mkdir $BUILDS && cd $BUILDS
-    sudo git clone https://github.com/michaelcbrown/arch_install
-}
-
 install_initial_packages () {
     sudo pacman -S --noconfirm \
         pulseaudio pulseaudio-alsa xorg xorg-xinit xorg-server xterm \
-        bspwm sxhkd feh maim xclip picom rofi ttf-font-awesome zsh \
-        lightdm papirus-icon-theme lxappearance \
-        ranger wget ufw unzip nemo \
+        lightdm papirus-icon-theme \
+        ranger wget ufw unzip nemo zsh \
     
-    cd $BUILDS
+    mkdir $BUILDS && cd $BUILDS
     sudo git clone https://aur.archlinux.org/yay-git.git
     sudo chown -R $USERNAME:$USERNAME ./yay-git
     cd yay-git
     makepkg -si
     
     yay -S --noconfirm \
-        xst canta-gtk-theme lightdm-slick-greeter lightdm-settings polybar mcfly zoxide \
+        canta-gtk-theme lightdm-slick-greeter lightdm-settings mcfly zoxide \
 
 }
 
+install_bspwm () {
+    sudo pacman -S --noconfirm \
+        bspwm sxhkd feh maim xclip picom rofi ttf-font-awesome lxappearance \
+        
+    yay -S --noconfirm \
+        xst polybar
+        
+}
+
 configure_bspwm () {
+    cd $BUILDS
+    sudo git clone https://github.com/michaelcbrown/arch_install
     mkdir -p ~/.config/{bspwm,sxhkd}
     sudo chmod +x $REPO/bspwmrc
     ln -sf $REPO/bspwmrc ~/.config/bspwm/
@@ -105,7 +109,7 @@ other_basics () {
     # Replace example-gtk-gnome with lightdm-slick-greeter and uncomment
     # -f is "force" > overwrite conflicting symlinks
     sudo systemctl enable lightdm -f
-    sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-slick-greeter/' /etc/lightdm/lightdm.conf
+    sudo sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-slick-greeter/' /etc/lightdm/lightdm.conf
 
     # oh-my-zsh
     cd /home/$USERNAME
@@ -117,6 +121,20 @@ other_basics () {
     sudo ufw enable
     sudo ufw status verbose
     sudo systemctl enable ufw.service
+}
+
+main () {
+    case $1 in
+        partition)
+            partition
+            ;;
+            
+        chroot)
+            chroot
+            ;;
+            
+        install_bspwm)
+        
 }
 
 if [ $# -eq 0 ]
