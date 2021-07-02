@@ -91,7 +91,7 @@ configure_bspwm () {
     ln -sf $REPO/rofi ~/.config/rofi
     ranger --copy-config=all
     ln -sf $REPO/rifle.conf ~/.config/ranger/
-    ln -sf $REPO/Xresources ~/.Xresources
+    ln -sf $REPO/.Xresources ~/.Xresources
 
     mkdir -p ~/.local/share/fonts
     ln -sf $REPO/fonts ~/.local/share/fonts
@@ -164,6 +164,7 @@ main () {
             exit 0
     esac
     shift
+    #doesn't work right now b/c there's no loop!
 }
 
 main $1
