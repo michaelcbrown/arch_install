@@ -123,6 +123,11 @@ install_cinnamon () {
     sudo pacman -S cinnamon
 }
 
+virtualbox () {
+    sudo pacman -S linux-headers virtualbox-guest-utils
+    sudo systemctl enable vboxservice.service
+}
+
 main () {
     case $1 in
         partition)
@@ -153,6 +158,10 @@ main () {
             other_basics
             ;;
             
+        virtualbox)
+            virtualbox
+            ;;
+            
         *)
             echo partition
             echo chroot
@@ -161,6 +170,7 @@ main () {
             echo configure_bspwm
             echo install_cinnamon
             echo other_basics
+            echo virtualbox
             exit 0
     esac
     shift
