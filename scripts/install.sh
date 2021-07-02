@@ -65,6 +65,9 @@ install_initial_packages () {
     yay -S --noconfirm \
         canta-gtk-theme lightdm-slick-greeter lightdm-settings mcfly zoxide \
 
+    sudo systemctl enable lightdm -f
+    sudo sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-slick-greeter/' /etc/lightdm/lightdm.conf
+
 }
 
 install_bspwm () {
@@ -104,13 +107,6 @@ other_basics () {
     mkdir -p ~/Pictures/desktop\ backgrounds
     cp $REPO/botw.png ~/Pictures/desktop\ backgrounds
 
-    # sudo nano /etc/lightdm/lightdm.conf
-    # Ctrl+W to search for "greeter-session=example"
-    # Replace example-gtk-gnome with lightdm-slick-greeter and uncomment
-    # -f is "force" > overwrite conflicting symlinks
-    sudo systemctl enable lightdm -f
-    sudo sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-slick-greeter/' /etc/lightdm/lightdm.conf
-
     # oh-my-zsh
     cd /home/$USERNAME
     wget --no-check-certificate http://install.ohmyz.sh -O - | sh
@@ -123,6 +119,10 @@ other_basics () {
     sudo systemctl enable ufw.service
 }
 
+install_cinnamon () {
+    sudo pacman -S cinnamon
+}
+
 main () {
     case $1 in
         partition)
@@ -133,17 +133,37 @@ main () {
             chroot
             ;;
             
+        install_initial_packages)
+            install_initial_packages
+            ;;
+            
         install_bspwm)
+            install_bspwm
+            ;;
+            
+        configure_bspwm)
+            configure_bspwm
+            ;;
         
+        install_cinnamon)
+            install_cinnamon
+            ;;
+            
+        other_basics)
+            other_basics
+            ;;
+            
+        *)
+            echo partition
+            echo chroot
+            echo install_initial_packages
+            echo install_bspwm
+            echo configure_bspwm
+            echo install_cinnamon
+            echo other_basics
+            exit 0
+    esac
+    shift
 }
 
-if [ $# -eq 0 ]
-then
-    partitioning
-    chrooting
-else
-    clone_repo
-    install_initial_packages
-    configure_bspwm
-    other_basics
-fi
+main
