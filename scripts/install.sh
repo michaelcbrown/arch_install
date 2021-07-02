@@ -82,10 +82,10 @@ install_bspwm () {
 configure_bspwm () {
     cd $BUILDS
     sudo git clone https://github.com/michaelcbrown/arch_install
-    mkdir -p ~/.config/{bspwm,sxhkd}
-    sudo chmod +x $REPO/bspwmrc
-    ln -sf $REPO/bspwmrc ~/.config/bspwm/
-    ln -sf $REPO/sxhkdrc ~/.config/sxhkd/
+    #mkdir -p ~/.config/{bspwm,sxhkd}
+    sudo chmod +x $REPO/bspwm/bspwmrc
+    ln -sf $REPO/bspwm ~/.config/bspwm
+    ln -sf $REPO/sxhkd ~/.config/sxhkd
     ln -sf $REPO/picom ~/.config/picom
     ln -sf $REPO/polybar ~/.config/polybar
     ln -sf $REPO/rofi ~/.config/rofi
