@@ -108,7 +108,7 @@ other_basics () {
     cp $REPO/botw.png ~/Pictures/desktop\ backgrounds
 
     # oh-my-zsh
-    cd /home/$USERNAME
+    cd /home/$USERNAME/builds
     wget --no-check-certificate http://install.ohmyz.sh -O - | sh
     sudo git clone git://github.com/robbyrussell/oh-my-zsh.git
     ln -sf $REPO/zshrc/.zshrc ~/.zshrc
