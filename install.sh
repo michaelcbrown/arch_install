@@ -108,7 +108,9 @@ other_basics () {
     # firewall
     sudo ufw enable
     sudo ufw status verbose
-    sudo systemctl enable ufw.service
+    sudo systemctl enable ufw.service vlc
+
+    sudo pacman -S xed firefox libreoffice-fresh
 }
 
 install_cinnamon () {
