@@ -135,7 +135,7 @@ Functions:
 "
 
 main () {
-    if ! declare -f > /dev/null
+    if ! declare -f "$@" > /dev/null
     then
         echo "Some function entered wrong."
         echo "$options"
@@ -144,6 +144,8 @@ main () {
         for arg in "$@"
         do
             "$arg"
+        done
+    fi
 }
 
 main "$@"
