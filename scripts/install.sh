@@ -7,11 +7,9 @@ trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
 # echo an error message before exiting
 trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
 
-
 REPO="/home/mb/builds/arch_install"
 BUILDS="/home/mb/builds"
 USERNAME="mb"
-
 
 ### partitioning and initial packages
 partition () {
@@ -43,12 +41,6 @@ chroot () {
     chmod 777 install.sh
     mv install.sh /mnt/home/$USERNAME
 }
-
-
-#curl -LJO https://raw.githubusercontent.com/michaelcbrown/arch_install/master/scripts/first_login.s
-#chown 
-#chmod +rwx first_login.sh
-#mv first_login.sh /mnt/home/mb
 
 install_initial_packages () {
     sudo pacman -S --noconfirm \
@@ -128,53 +120,30 @@ virtualbox () {
     sudo systemctl enable vboxservice.service
 }
 
+options="
+
+Functions:
+    partition                       partitioning + pacstrap
+    chroot                          everything after arch-chroot /mnt
+    install_initial_packages        X, themes, utilities
+    install_bspwm                   just installing bspwm et al.
+    configure_bspwm                 clone repo, make symbolic links, handle fonts, etc.
+    other_basics                    set up background for feh, oh-my-zsh, firewall...
+    install_cinnamon                right now, just sudo pacman -S cinnamon
+    virtualbox                      gets Guest Additions up and running
+
+"
+
 main () {
-    case $1 in
-        partition)
-            partition
-            ;;
-            
-        chroot)
-            chroot
-            ;;
-            
-        install_initial_packages)
-            install_initial_packages
-            ;;
-            
-        install_bspwm)
-            install_bspwm
-            ;;
-            
-        configure_bspwm)
-            configure_bspwm
-            ;;
-        
-        install_cinnamon)
-            install_cinnamon
-            ;;
-            
-        other_basics)
-            other_basics
-            ;;
-            
-        virtualbox)
-            virtualbox
-            ;;
-            
-        *)
-            echo partition
-            echo chroot
-            echo install_initial_packages
-            echo install_bspwm
-            echo configure_bspwm
-            echo install_cinnamon
-            echo other_basics
-            echo virtualbox
-            exit 0
-    esac
-    shift
-    #doesn't work right now b/c there's no loop!
+    if ! declare -f > /dev/null
+    then
+        echo "Some function entered wrong."
+        echo "$options"
+        exit 1
+    else
+        for arg in "$@"
+        do
+            "$arg"
 }
 
-main $1
+main "$@"
