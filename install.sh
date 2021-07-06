@@ -151,3 +151,6 @@ main () {
 }
 
 main "$@"
+
+# Other programs to add in as extras
+# Firefox, xed, Obsidian, vlc, libreoffice-fresh
