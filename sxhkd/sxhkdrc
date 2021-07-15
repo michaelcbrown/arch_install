@@ -9,6 +9,9 @@ super + space
 alt + t
     obsidian
 
+alt + x
+    xed
+
 alt + n
     nemo
 
