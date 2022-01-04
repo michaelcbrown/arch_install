@@ -154,3 +154,4 @@ main "$@"
 
 # Other programs to add in as extras
 # Firefox, xed, Obsidian, vlc, libreoffice-fresh, code (I'm think that's the version I have installed)
+# Didn't parse carefully, but - I don't think I ever put .xinitrc somewhere?

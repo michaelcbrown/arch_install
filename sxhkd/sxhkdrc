@@ -27,10 +27,10 @@ alt + v
 #  ------ brightness  -------- # 
 
 XF86MonBrightnessUp
-    xbacklight -inc 10
+    xbacklight -inc 1000
 
 XF86MonBrightnessDown
-    xbacklight -dec 10
+    xbacklight -dec 1000
 
 # ------ volume ------ #
 XF86AudioLowerVolume
