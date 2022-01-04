@@ -47,3 +47,8 @@ unset __conda_setup
 
 eval "$(mcfly init zsh)"
 eval "$(zoxide init zsh)"
+
+alias light="xrandr --output eDP-1 --brightness"
+alias sound="amixer set Master"
+alias mute="amixer set Master toggle"
+
