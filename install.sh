@@ -17,7 +17,7 @@ partition () {
     mkfs.ext2 /dev/sda1
     mkfs.ext4 /dev/sda2
     mount /dev/sda2 /mnt
-    pacstrap /mnt base linux linux-firmware base-devel vim nano sudo git iwd dhcpcd
+    pacstrap /mnt base linux linux-firmware base-devel sudo git iwd dhcpcd
     genfstab -U /mnt >> /mnt/etc/fstab
 }
 
@@ -45,9 +45,8 @@ chroot () {
 install_initial_packages () {
     sudo pacman -S --noconfirm \
         pulseaudio pulseaudio-alsa xorg xorg-xinit xorg-server xterm \
-        lightdm papirus-icon-theme \
-        ranger wget ufw unzip nemo zsh \
-    
+        lightdm wget ufw unzip nemo zsh
+
     mkdir $BUILDS && cd $BUILDS
     sudo git clone https://aur.archlinux.org/yay-git.git
     sudo chown -R $USERNAME:$USERNAME ./yay-git
@@ -55,47 +54,39 @@ install_initial_packages () {
     makepkg -si
     
     yay -S --noconfirm \
-        canta-gtk-theme lightdm-slick-greeter lightdm-settings mcfly zoxide \
+        lightdm-slick-greeter lightdm-settings
 
     sudo systemctl enable lightdm -f
     sudo sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-slick-greeter/' /etc/lightdm/lightdm.conf
-
 }
 
 install_bspwm () {
     sudo pacman -S --noconfirm \
-        bspwm sxhkd feh maim xclip picom rofi ttf-font-awesome lxappearance \
+        bspwm sxhkd feh xclip picom rofi ttf-font-awesome
         
     yay -S --noconfirm \
-        xst polybar
-        
+        polybar
 }
 
 configure_bspwm () {
     cd $BUILDS
     sudo git clone https://github.com/michaelcbrown/arch_install
-    #mkdir -p ~/.config/{bspwm,sxhkd}
     sudo chmod +x $REPO/bspwm/bspwmrc
     ln -sf $REPO/bspwm ~/.config/bspwm
     ln -sf $REPO/sxhkd ~/.config/sxhkd
     ln -sf $REPO/picom ~/.config/picom
     ln -sf $REPO/polybar ~/.config/polybar
     ln -sf $REPO/rofi ~/.config/rofi
-    ranger --copy-config=all
-    ln -sf $REPO/rifle.conf ~/.config/ranger/
+	ln -sf $REPO/.xinitrc ~/.xinitrc
     ln -sf $REPO/.Xresources ~/.Xresources
 
     mkdir -p ~/.local/share/fonts
     ln -sf $REPO/fonts ~/.local/share/fonts
     fc-cache -fv
-    cd $REPO/st
-    make && sudo make install
-    ### can I run xrdb merge .Xresources here? or will it be an error
     chsh -s /usr/bin/zsh
 }
 
 other_basics () {
-    # -mkdir -p makes the parent directories if necessary
     mkdir -p ~/Pictures/desktop\ backgrounds
     cp $REPO/botw.png ~/Pictures/desktop\ backgrounds
 
@@ -110,16 +101,7 @@ other_basics () {
     sudo ufw status verbose
     sudo systemctl enable ufw.service vlc
 
-    sudo pacman -S xed firefox libreoffice-fresh
-}
-
-install_cinnamon () {
-    sudo pacman -S cinnamon
-}
-
-virtualbox () {
-    sudo pacman -S linux-headers virtualbox-guest-utils
-    sudo systemctl enable vboxservice.service
+    sudo pacman -S alacritty xed mcfly zoxide
 }
 
 options="
@@ -131,8 +113,6 @@ Functions:
     install_bspwm                   just installing bspwm et al.
     configure_bspwm                 clone repo, make symbolic links, handle fonts, etc.
     other_basics                    set up background for feh, oh-my-zsh, firewall...
-    install_cinnamon                right now, just sudo pacman -S cinnamon
-    virtualbox                      gets Guest Additions up and running
 
 "
 
