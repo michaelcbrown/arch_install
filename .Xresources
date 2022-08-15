@@ -7,7 +7,7 @@ Xft.hinting:    true
 Xft.hintstyle:  hintfull
 
 !-- transparency ( any value under 255 ) --!
-st.opacity:        255
+st.opacity:        100
 
 !-- inner border -- ! 
 st.borderpx:        15

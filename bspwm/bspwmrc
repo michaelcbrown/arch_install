@@ -5,14 +5,17 @@ sxhkd &
 polybar black &
 
 picom &
-feh --bg-fill ~/Pictures/desktop\ backgrounds/botw.jpg &
-xrdb merge ~/.Xresources &  # (terminal theme)
 
-bspc monitor -d I II III IV
+feh --bg-fill ~/Pictures/desktop\ backgrounds/botw.jpg &
+
+xrdb merge ~/.Xresources &
+
+bspc monitor eDP-1 -d I II III IV
+bspc monitor HDMI-1 -d V VI
 
 bspc config border_width         2
 bspc config window_gap          7
-bsp config presel_feedback_color "#ffffff" 
+bspc config presel_feedback_color "#ffffff" 
 bspc config split_ratio          0.65
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true

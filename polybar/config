@@ -25,7 +25,7 @@ tray-position = right
 
 modules-left = bspwm 
 modules-center = xwindow
-modules-right = wlan battery date powermenu
+#modules-right = wlan battery date powermenu
 
 ###################################################
 [module/bspwm]
